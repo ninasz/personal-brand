@@ -126,3 +126,112 @@ if (reviewSlider && reviewPrevBtn && reviewNextBtn && reviewDots.length) {
     reviewSlider.scrollTo({ left: targetLeft, behavior: "auto" });
   });
 }
+
+// ─── COOKIE CONSENT & GOOGLE ANALYTICS INTEGRATION ───
+(function () {
+  const banner = document.querySelector("#cookie-banner");
+  if (!banner) return;
+
+  const acceptAllBtn = document.querySelector("#cookie-accept-all");
+  const acceptEssentialBtn = document.querySelector("#cookie-accept-essential");
+  const closeBtn = document.querySelector("#cookie-close-btn");
+  const toggleDetailsBtn = document.querySelector("#cookie-toggle-details");
+  const detailsPanel = document.querySelector("#cookie-details-panel");
+  const analyticsToggle = document.querySelector("#cookie-analytics-toggle");
+  const openSettingsBtn = document.querySelector("#open-cookie-settings");
+
+  const CONSENT_KEY = "ines_cookie_consent";
+
+  function updateGtagConsent(analyticsGranted) {
+    if (typeof gtag === "function") {
+      gtag("consent", "update", {
+        analytics_storage: analyticsGranted ? "granted" : "denied",
+        ad_storage: analyticsGranted ? "granted" : "denied",
+        ad_user_data: analyticsGranted ? "granted" : "denied",
+        ad_personalization: analyticsGranted ? "granted" : "denied"
+      });
+    }
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "consent_status_updated",
+        analytics_status: analyticsGranted ? "granted" : "denied"
+      });
+    }
+  }
+
+  function showBanner() {
+    banner.hidden = false;
+    requestAnimationFrame(() => {
+      banner.classList.add("show");
+    });
+  }
+
+  function hideBanner() {
+    banner.classList.remove("show");
+    setTimeout(() => {
+      banner.hidden = true;
+    }, 360);
+  }
+
+  function saveConsent(type) {
+    try {
+      localStorage.setItem(CONSENT_KEY, type);
+    } catch (e) { }
+
+    const isAnalyticsAllowed = type === "all" || (type === "custom" && analyticsToggle && analyticsToggle.checked);
+    updateGtagConsent(isAnalyticsAllowed);
+    hideBanner();
+  }
+
+  // Check saved state on load
+  let savedConsent = null;
+  try {
+    savedConsent = localStorage.getItem(CONSENT_KEY);
+  } catch (e) { }
+
+  if (!savedConsent) {
+    setTimeout(showBanner, 600);
+  } else {
+    updateGtagConsent(savedConsent === "all");
+    if (analyticsToggle) {
+      analyticsToggle.checked = savedConsent === "all";
+    }
+  }
+
+  if (acceptAllBtn) {
+    acceptAllBtn.addEventListener("click", () => saveConsent("all"));
+  }
+
+  if (acceptEssentialBtn) {
+    acceptEssentialBtn.addEventListener("click", () => saveConsent("essential"));
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      if (!savedConsent) {
+        saveConsent("essential");
+      } else {
+        hideBanner();
+      }
+    });
+  }
+
+  if (toggleDetailsBtn && detailsPanel) {
+    toggleDetailsBtn.addEventListener("click", () => {
+      const isHidden = detailsPanel.hidden;
+      detailsPanel.hidden = !isHidden;
+      toggleDetailsBtn.textContent = isHidden ? "Hide details ▴" : "Customize settings ▾";
+    });
+  }
+
+  if (openSettingsBtn) {
+    openSettingsBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      showBanner();
+      if (detailsPanel) {
+        detailsPanel.hidden = false;
+        if (toggleDetailsBtn) toggleDetailsBtn.textContent = "Hide details ▴";
+      }
+    });
+  }
+})();
