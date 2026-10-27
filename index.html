@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5b796333-9f3e-4d0f-bfcd-148e8f2b8287"
+    data-blockingmode="auto" type="text/javascript"></script>
   <!-- Google Consent Mode (Default Denied for privacy & GDPR compliance) -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
 
     var storedConsent = null;
     try {
       storedConsent = localStorage.getItem('ines_cookie_consent');
-    } catch(e) {}
+    } catch (e) { }
 
     gtag('consent', 'default', {
       'analytics_storage': storedConsent === 'all' ? 'granted' : 'denied',
@@ -21,11 +23,14 @@
   </script>
 
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MXBPKN6L');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MXBPKN6L');</script>
   <!-- End Google Tag Manager -->
 
   <!-- Google tag (gtag.js) GA4 -->
@@ -53,8 +58,8 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXBPKN6L"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXBPKN6L" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- HEADER -->
@@ -433,7 +438,8 @@
   <!-- FOOTER -->
   <footer>
     <p>© 2026 Ines Amorim. Built by hand with HTML, CSS, and JavaScript. ✦</p>
-    <p class="sub-footer">Digital Marketing Specialist &amp; Fashion Designer in Gothenburg · <button type="button" id="open-cookie-settings" class="cookie-settings-trigger">Cookie Preferences</button></p>
+    <p class="sub-footer">Digital Marketing Specialist &amp; Fashion Designer in Gothenburg · <button type="button"
+        id="open-cookie-settings" class="cookie-settings-trigger">Cookie Preferences</button></p>
   </footer>
 
   <!-- COOKIE CONSENT BANNER -->
@@ -442,10 +448,12 @@
       <div class="cookie-header">
         <span class="cookie-star" aria-hidden="true">✦</span>
         <span class="cookie-title">Cookie Preferences</span>
-        <button type="button" id="cookie-close-btn" class="cookie-close-btn" aria-label="Dismiss cookie banner">✕</button>
+        <button type="button" id="cookie-close-btn" class="cookie-close-btn"
+          aria-label="Dismiss cookie banner">✕</button>
       </div>
       <p class="cookie-text">
-        This portfolio uses cookies and analytics (Google Analytics &amp; Tag Manager) to understand site traffic and ensure the best experience.
+        This portfolio uses cookies and analytics (Google Analytics &amp; Tag Manager) to understand site traffic and
+        ensure the best experience.
       </p>
 
       <div id="cookie-details-panel" class="cookie-details" hidden>
@@ -454,7 +462,8 @@
             <span class="cookie-cat-name">Necessary</span>
             <span class="cookie-cat-badge">Always Active</span>
           </div>
-          <p class="cookie-cat-desc">Required for site security, light/dark theme persistence, and core display features.</p>
+          <p class="cookie-cat-desc">Required for site security, light/dark theme persistence, and core display
+            features.</p>
         </div>
         <div class="cookie-category">
           <div class="cookie-cat-header">
@@ -464,19 +473,28 @@
               <span class="cookie-toggle-slider"></span>
             </label>
           </div>
-          <p class="cookie-cat-desc">Measures visitor interaction anonymously to improve design, layout, and content.</p>
+          <p class="cookie-cat-desc">Measures visitor interaction anonymously to improve design, layout, and content.
+          </p>
         </div>
       </div>
 
       <div class="cookie-footer-row">
         <button type="button" id="cookie-toggle-details" class="cookie-link-btn">Customize settings ▾</button>
         <div class="cookie-buttons">
-          <button type="button" id="cookie-accept-essential" class="cookie-btn cookie-btn-secondary">Essential Only</button>
+          <button type="button" id="cookie-accept-essential" class="cookie-btn cookie-btn-secondary">Essential
+            Only</button>
           <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary">Accept All ✦</button>
         </div>
       </div>
     </div>
   </aside>
+
+  <!-- COOKIEBOT COOKIE DECLARATION -->
+  <section id="cookie-policy">
+    <h2>Cookie Policy</h2>
+    <script id="CookieDeclaration" src="https://consent.cookiebot.com/5b796333-9f3e-4d0f-bfcd-148e8f2b8287/cd.js"
+      type="text/javascript" async></script>
+  </section>
 
 </body>
 
